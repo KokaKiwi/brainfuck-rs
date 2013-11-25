@@ -49,17 +49,11 @@ impl BrainfuckInterpreter
             {
                 '>' => {
                     self.pointer += 1;
-                    while self.pointer >= MEM_SIZE
-                    {
-                        self.pointer -= MEM_SIZE;
-                    }
+                    self.pointer = self.pointer % MEM_SIZE;
                 }
                 '<' => {
                     self.pointer -= 1;
-                    while self.pointer < 0
-                    {
-                        self.pointer += MEM_SIZE;
-                    }
+                    self.pointer = self.pointer % MEM_SIZE;
                 }
                 '+' => {
                     self.mem[self.pointer] += 1;
