@@ -1,0 +1,6 @@
+[submodule "rust-mk"]
+	path = rust-mk
+	url = git://github.com/KokaKiwi/rust-mk.git
+[submodule "deps/argparse-rs"]
+	path = deps/argparse-rs
+	url = git://github.com/KokaKiwi/argparse-rs.git
