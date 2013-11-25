@@ -1,3 +1,5 @@
+use std::io;
+
 static MEM_SIZE: uint = 5000;
 
 pub struct BrainfuckInterpreter
@@ -20,6 +22,7 @@ impl BrainfuckInterpreter
     {
         let mut pc: uint = 0;
         let mut loops: ~[uint] = ~[];
+        let mut input = io::stdin();
 
         let get_matching_paren = || {
             let mut tmp = pc;
@@ -66,6 +69,11 @@ impl BrainfuckInterpreter
                 }
                 '.' => {
                     print!("{:c}", self.mem[self.pointer] as char);
+                }
+                ',' => {
+                    self.mem[self.pointer] = do io::io_error::cond.trap(|_| {}).inside {
+                        input.read_u8()
+                    };
                 }
                 '[' => {
                     if self.mem[self.pointer] == 0
