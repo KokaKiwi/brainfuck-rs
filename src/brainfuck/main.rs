@@ -4,7 +4,6 @@
     uuid = "c78f114a-2117-4912-8ccd-6cb8e2bc4480"
 )];
 
-#[author = "KokaKiwi <kokakiwi@kokakiwi.net>"];
 #[license = "MIT"];
 
 #[crate_type = "bin"];
@@ -30,7 +29,7 @@ fn read_file(filename: &str) -> ~str
     let content = if filename == "-" {
         io::stdin().read_to_end()
     } else {
-        let path = Path::new(filename);
+        let path = Path::init(filename);
 
         match io::File::open(&path)
         {

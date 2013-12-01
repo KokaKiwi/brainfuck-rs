@@ -65,9 +65,9 @@ impl BrainfuckInterpreter
                     print!("{:c}", self.mem[self.pointer] as char);
                 }
                 ',' => {
-                    self.mem[self.pointer] = do io::io_error::cond.trap(|_| {}).inside {
+                    self.mem[self.pointer] = io::io_error::cond.trap(|_| {}).inside(|| {
                         input.read_u8()
-                    };
+                    });
                 }
                 '[' => {
                     if self.mem[self.pointer] == 0
