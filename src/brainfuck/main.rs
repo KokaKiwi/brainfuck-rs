@@ -1,11 +1,10 @@
 #[link(
-    name = "brainfuck",
-    vers = "0.1.0",
     uuid = "c78f114a-2117-4912-8ccd-6cb8e2bc4480"
 )];
 
 #[license = "MIT"];
 
+#[crate_id = "github.com/KokaKiwi/brainfuck-rs#0.1.0"];
 #[crate_type = "bin"];
 
 #[feature(macro_rules)];
@@ -29,7 +28,7 @@ fn read_file(filename: &str) -> ~str
     let content = if filename == "-" {
         io::stdin().read_to_end()
     } else {
-        let path = Path::init(filename);
+        let path = Path::new(filename);
 
         match io::File::open(&path)
         {
@@ -38,7 +37,7 @@ fn read_file(filename: &str) -> ~str
         }
     };
 
-    str::from_utf8(content)
+    str::from_utf8(content).to_owned()
 }
 
 fn main_args(args: &[~str]) -> int
